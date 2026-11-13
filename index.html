@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel de Transparência - Melhoria do Condomínio</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --success: #155724;
+            --success-bg: #d4edda;
+            --warning: #856404;
+            --warning-bg: #fff3cd;
+            --info: #004085;
+            --info-bg: #cce5ff;
+            --bg-color: #f4f7f6;
+            --card-bg: #ffffff;
+            --accent: #27ae60;
+        }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: var(--bg-color); color: #333; margin: 0; padding: 20px; }
+        .container { max-width: 900px; margin: auto; }
+        header { background: var(--card-bg); padding: 25px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); margin-bottom: 20px; }
+        h1 { color: var(--primary); font-size: 24px; margin: 0 0 5px 0; }
+        p.subtitle { color: #7f8c8d; margin: 0 0 20px 0; font-size: 14px; }
+        
+        /* Cards de Resumo */
+        .metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 25px; }
+        .metric-card { background: var(--card-bg); padding: 15px 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.03); border-left: 4px solid var(--primary); }
+        .metric-card.success { border-left-color: #28a745; }
+        .metric-card.warning { border-left-color: #ffc107; }
+        .metric-title { font-size: 12px; color: #7f8c8d; text-transform: uppercase; font-weight: bold; }
+        .metric-value { font-size: 20px; font-weight: bold; color: var(--primary); margin-top: 5px; }
+
+        /* Seções e Tabelas */
+        .section-card { background: var(--card-bg); padding: 25px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); margin-bottom: 20px; }
+        h2 { font-size: 18px; color: var(--primary); margin-top: 0; border-bottom: 2px solid #f0f0f0; padding-bottom: 10px; }
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        th, td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #f0f0f0; font-size: 14px; }
+        th { background-color: #f8f9fa; color: var(--primary); font-weight: 600; }
+        
+        .badge { padding: 5px 10px; border-radius: 12px; font-size: 12px; font-weight: bold; display: inline-block; }
+        .pago { background-color: var(--success-bg); color: var(--success); }
+        .pendente { background-color: var(--warning-bg); color: var(--warning); }
+        .parcelado { background-color: var(--info-bg); color: var(--info); }
+        
+        .alert-box { background-color: #e2f0d9; border: 1px solid #b7e1cd; padding: 15px; border-radius: 6px; font-size: 14px; color: #274e13; margin-bottom: 20px; }
+        
+        /* Módulo Pix Interativo */
+        .pix-box { background: #f8f9fa; border: 2px dashed #cbd5e1; padding: 20px; border-radius: 8px; text-align: center; margin-top: 15px; }
+        .pix-key { font-family: monospace; background: #fff; padding: 10px; border: 1px solid #cbd5e1; border-radius: 4px; display: inline-block; margin: 10px 0; font-size: 15px; font-weight: bold; color: #334155; }
+        .btn { background-color: var(--accent); color: white; border: none; padding: 10px 20px; font-size: 14px; font-weight: bold; border-radius: 5px; cursor: pointer; transition: background 0.2s; text-decoration: none; display: inline-block; }
+        .btn:hover { background-color: #219653; }
+        .btn-whatsapp { background-color: #25d366; margin-left: 10px; }
+        .btn-whatsapp:hover { background-color: #1ebe5d; }
+        .copy-feedback { color: var(--accent); font-size: 12px; font-weight: bold; display: block; margin-top: 5px; height: 15px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    
+    <!-- Cabeçalho -->
+    <header>
+        <h1>Projeto: Melhorias Do Condomínio</h1>
+        <p class="subtitle">Painel público de transparência financeira para os moradores e condôminos.</p>
+        
+        <!-- Métricas / Resumo Geral -->
+        <div class="metrics-grid">
+            <div class="metric-card success">
+                <div class="metric-title">Total Arrecadado</div>
+                <div class="metric-value">R$ 1.400,00</div>
+            </div>
+            <div class="metric-card warning">
+                <div class="metric-title">Meta do Projeto</div>
+                <div class="metric-value">R$ 30.000,00</div>
+            </div>
+            <div class="metric-card">
+                <div class="metric-title">Progresso</div>
+                <div class="metric-value">66.6%</div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Aviso Importante -->
+    <div class="alert-box">
+        📢 <strong>Aviso da Administração:</strong> O início das instalações está marcado para o dia 20 do corrente mês, logo após a compensação das últimas unidades pendentes.
+    </div>
+
+    <!-- Módulo Novo: Como Contribuir / Pix Interativo -->
+    <div class="section-card">
+        <h2>⚡ Como Contribuir / Realizar o Pagamento</h2>
+        <p style="font-size: 14px; color: #555;">Caso ainda não tenha contribuído, utilize a chave Pix oficial do condomínio abaixo e envie o comprovante para a administração.</p>
+        
+        <div class="pix-box">
+            <p style="margin: 0; font-size: 13px; color: #64748b;">Chave Pix (CNPJ ou E-mail do Condomínio):</p>
+            <div class="pix-key" id="pixKeyText">12.345.678/0001-99</div>
+            <div>
+                <button class="btn" onclick="copyPixKey()">Copiar Chave Pix</button>
+                <a href="https://wa.me/5500999999999?text=Olá,%20segue%20o%20comprovante%20de%20pagamento%20da%20taxa%20do%20projeto%20da%20fachada." target="_blank" class="btn btn-whatsapp">Enviar Comprovante (WhatsApp)</a>
+            </div>
+            <span class="copy-feedback" id="feedbackMsg"></span>
+        </div>
+    </div>
+
+    <!-- Controle de Receitas (Contribuições) -->
+    <div class="section-card">
+        <h2>💰 Receitas (Contribuições dos Moradores)</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Unidade</th>
+                    <th>Morador / Proprietário</th>
+                    <th>Valor (R$)</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Apto 101</td>
+                    <td>João da Silva</td>
+                    <td>R$ 350,00</td>
+                    <td><span class="badge pago">✅ Pago</span></td>
+                </tr>
+                <tr>
+                    <td>Apto 102</td>
+                    <td>Maria Oliveira</td>
+                    <td>R$ 350,00</td>
+                    <td><span class="badge pago">✅ Pago</span></td>
+                </tr>
+                <tr>
+                    <td>Apto 201</td>
+                    <td>Carlos Souza (Inquilino)</td>
+                    <td>R$ 350,00</td>
+                    <td><span class="badge pago">✅ Pago</span></td>
+                </tr>
+                <tr>
+                    <td>Apto 202</td>
+                    <td>Ana Beatriz</td>
+                    <td>R$ 350,00</td>
+                    <td><span class="badge pendente">⏳ Pendente</span></td>
+                </tr>
+                <tr>
+                    <td>Apto 301</td>
+                    <td>Roberto Mendes</td>
+                    <td>R$ 350,00</td>
+                    <td><span class="badge parcelado">🔄 Parcelado (1/2)</span></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Controle de Despesas -->
+    <div class="section-card">
+        <h2>🛠️ Despesas e Custos Previstos/Realizados</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Descrição do Item / Serviço</th>
+                    <th>Fornecedor</th>
+                    <th>Valor Estimado/Pago</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>10 Luminárias LED Externas</td>
+                    <td>Ilumina Materiais Elétricos</td>
+                    <td>R$ 1.200,00</td>
+                </tr>
+                <tr>
+                    <td>Mão de obra para instalação</td>
+                    <td>Eletricista Sr. Antônio</td>
+                    <td>R$ 700,00</td>
+                </tr>
+                <tr>
+                    <td>Fiação e conectores extras</td>
+                    <td>Depósito São José</td>
+                    <td>R$ 200,00</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<!-- Script JavaScript para o Botão Copiar Pix -->
+<script>
+    function copyPixKey() {
+        const pixText = document.getElementById("pixKeyText").innerText;
+        navigator.clipboard.writeText(pixText).then(() => {
+            const feedback = document.getElementById("feedbackMsg");
+            feedback.innerText = "✓ Chave Pix copiada com sucesso!";
+            setTimeout(() => {
+                feedback.innerText = "";
+            }, 3000);
+        }).catch(err => {
+            console.error('Erro ao copiar: ', err);
+        });
+    }
+</script>
+
+</body>
+</html>
